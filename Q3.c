@@ -113,6 +113,7 @@ void sort_arrival() {
     }
 }
 void main() {
+	printf("\t\t\t\t*********Shortest Job First**********");
 	int n,l=1;
 	pthread_t p[10];
 	printf("\nEnter No.of Processes :");
