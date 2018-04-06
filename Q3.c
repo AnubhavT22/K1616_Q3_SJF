@@ -18,6 +18,7 @@ clock_t start;
 float TAT=0,WT=0;
 node *sp1=NULL,*sp2=NULL,*temp;
 void *processor(node *S) {
+	
 	clock_t count;
 	while(1) {
 		sem_wait(&S->se);
@@ -113,7 +114,7 @@ void sort_arrival() {
     }
 }
 void main() {
-	printf("\t\t\t\t*********Shortest Job First**********");
+	printf("\t\t\t\t\t\t\t\t\t\t\t*********Shortest Job First**********\n");
 	int n,l=1;
 	pthread_t p[10];
 	printf("\nEnter No.of Processes :");
@@ -138,12 +139,13 @@ void main() {
 		i++;
 	}
 	i=0;
-	
+	system("cls");
+	printf("\t\t\t\t\t\t\t\t\t\t\t\t\**********PROCESSOR************\n\n");
 	start=clock();
 	while(i<n) {
 		temp=sp1;	
 		if(temp->Atime<=0) {
-			printf("Process-%d is Dicarded Due to Incorrect Arrival Time",temp->id);
+			printf("Process-%d is Dicarded Due to Incorrect Arrival Time\n",temp->id);
 			sp1=temp->next;
 			temp=sp1;
 			i++;
@@ -153,7 +155,7 @@ void main() {
 				sem_post(&temp->se);
 			}
 		if((clock()-start)/CLOCKS_PER_SEC==temp->Atime) {
-			printf("Process-%d is created",temp->id);
+			printf("Process-%d is created\n",temp->id);
 			pthread_create(&p[i],NULL,processor,temp);
 			sp1=sp1->next;
 			sort_burst(temp);
